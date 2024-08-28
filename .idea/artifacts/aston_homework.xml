@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="aston_homework">
+    <output-path>$PROJECT_DIR$/out/artifacts/aston_homework</output-path>
+    <root id="archive" name="aston_homework.war" />
+  </artifact>
+</component>

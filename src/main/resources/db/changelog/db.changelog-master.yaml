@@ -1,0 +1,229 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: chip
+      changes:
+        - createTable:
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: population
+                  type: int
+              - column:
+                  name: has_metro
+                  type: boolean
+
+  - changeSet:
+      id: 2
+      author: chip
+      changes:
+        - createTable:
+            tableName: attractions
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creation_date
+                  type: date
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: type
+                  type: varchar(50)
+              - column:
+                  name: city_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_attraction_city
+                    references: cities(id)
+                    nullable: false
+
+  - changeSet:
+      id: 3
+      author: chip
+      changes:
+        - createTable:
+            tableName: services
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: attraction_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_service_attraction
+                    references: attractions(id)
+                    nullable: false
+  - changeSet:
+      id: 4
+      author: chip
+      changes:
+        - insert:
+            tableName: cities
+            columns:
+              - column:
+                  name: name
+                  value: Moscow
+              - column:
+                  name: population
+                  value: 12506468
+              - column:
+                  name: has_metro
+                  value: true
+        - insert:
+            tableName: cities
+            columns:
+              - column:
+                  name: name
+                  value: Saint Petersburg
+              - column:
+                  name: population
+                  value: 5383890
+              - column:
+                  name: has_metro
+                  value: true
+  - changeSet:
+      id: 5
+      author: chip
+      changes:
+        - insert:
+            tableName: attractions
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 1
+              - column:
+                  name: creation_date
+                  value: '2023-01-01'
+              - column:
+                  name: description
+                  value: Description 1
+              - column:
+                  name: type
+                  value: PARK
+              - column:
+                  name: city_id
+                  value: 1
+        - insert:
+            tableName: attractions
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 2
+              - column:
+                  name: creation_date
+                  value: '2023-02-01'
+              - column:
+                  name: description
+                  value: Description 2
+              - column:
+                  name: type
+                  value: PALACE
+              - column:
+                  name: city_id
+                  value: 2
+
+  - changeSet:
+      id: 6
+      author: chip
+      changes:
+        - insert:
+            tableName: services
+            columns:
+              - column:
+                  name: name
+                  value: Guided Tour
+              - column:
+                  name: description
+                  value: Guided tour of the attraction
+              - column:
+                  name: attraction_id
+                  value: 1
+        - insert:
+            tableName: services
+            columns:
+              - column:
+                  name: name
+                  value: Audio Guide
+              - column:
+                  name: description
+                  value: Audio guide for the attraction
+              - column:
+                  name: attraction_id
+                  value: 2
+  - changeSet:
+      id: 7
+      author: chip
+      changes:
+        - insert:
+            tableName: attractions
+            columns:
+              - column:
+                  name: name
+                  value: Bttraction 1
+              - column:
+                  name: creation_date
+                  value: '2023-01-01'
+              - column:
+                  name: description
+                  value: Description 1
+              - column:
+                  name: type
+                  value: PARK
+              - column:
+                  name: city_id
+                  value: 1
+        - insert:
+            tableName: attractions
+            columns:
+              - column:
+                  name: name
+                  value: Bttraction 1
+              - column:
+                  name: creation_date
+                  value: '2023-02-01'
+              - column:
+                  name: description
+                  value: Description 2
+              - column:
+                  name: type
+                  value: PALACE
+              - column:
+                  name: city_id
+                  value: 2
